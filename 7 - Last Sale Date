@@ -1,0 +1,20 @@
+var tablefs = FeatureSetByName($map, "Assess")
+var CAMA_ID = $feature.CAMA_ID
+
+var filterStatement = 'CAMA_ID = @CAMA_ID'
+
+var relatedData = Filter(tablefs, filterStatement)
+
+var relatedDataSorted = OrderBy(relatedData, 'CAMA_ID')
+
+var popupString = ''
+for (var f in relatedDataSorted){
+    popupString = Text(f.LS_DATE)
+}
+var y = Left(popupString, Count(popupString)-4)
+var ym = Left(popupString, Count(popupString)-2)
+var m = right(ym, Count(ym)-4)
+var d = right(popupString, Count(popupString)-6)
+
+
+return m+"/"+d+"/"+y
