@@ -1,0 +1,15 @@
+var tablefs = FeatureSetByName($map, "Assess")
+var CAMA_ID = $feature.CAMA_ID
+
+var filterStatement = 'CAMA_ID = @CAMA_ID'
+
+var relatedData = Filter(tablefs, filterStatement)
+
+var relatedDataSorted = OrderBy(relatedData, 'CAMA_ID')
+
+var popupString = ''
+for (var f in relatedDataSorted){
+    popupString = Text(f.ZIP)
+}
+return popupString
+
